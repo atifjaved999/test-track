@@ -1,2 +1,18 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
+
+<div id="map"></div>
+
+<script type="text/javascript">
+var map = L.map('map').setView([31,74], 9);
+// add an OpenStreetMap tile layer
+// L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+//     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+// }).addTo(map);
+
+
+// default map locale
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{attribution: '&copy; OpenStreetMap'}).addTo(map);
+
+      L.marker([31.52640375937539,74.27777051925659]).addTo(map).bindPopup('A Cool Place I should visit').openPopup();
+</script>
