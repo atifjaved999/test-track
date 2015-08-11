@@ -1,18 +1,29 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
-<div id="map"></div>
-
-<script type="text/javascript">
-var map = L.map('map').setView([31,74], 9);
-// add an OpenStreetMap tile layer
-// L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-//     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-// }).addTo(map);
-
-
-// default map locale
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{attribution: '&copy; OpenStreetMap'}).addTo(map);
-
-      L.marker([31.52640375937539,74.27777051925659]).addTo(map).bindPopup('A Cool Place I should visit').openPopup();
+<script
+src="http://maps.googleapis.com/maps/api/js">
 </script>
+
+<script>
+var myCenter=new google.maps.LatLng(51.508742,-0.120850);
+var m1=new google.maps.LatLng("<%=@lat%>", "<%=@lng%>");
+
+function initialize()
+{
+var mapProp = {
+  center:myCenter,
+  zoom:5,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+var marker=new google.maps.Marker({
+  position:m1,
+  });
+
+marker.setMap(map);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<div id="googleMap" style="width:100%;height:500px;"></div>

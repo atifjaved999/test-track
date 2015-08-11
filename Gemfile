@@ -28,6 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '~> 3.4.0'
 gem "cancan"
+gem 'pry-rails'
 
 gem 'leaflet-rails'
 
