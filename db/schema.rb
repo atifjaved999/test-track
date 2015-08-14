@@ -11,18 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813164104) do
+ActiveRecord::Schema.define(version: 20150814111543) do
 
   create_table "devices", force: :cascade do |t|
-    t.string   "imei",       limit: 255
-    t.string   "type",       limit: 255
-    t.string   "sim_no",     limit: 255
-    t.integer  "user_id",    limit: 4
+    t.string   "imei_no",     limit: 255
+    t.string   "device_type", limit: 255
+    t.string   "sim_no",      limit: 255
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "lat",        limit: 255
+    t.string   "lng",        limit: 255
+    t.string   "speed",      limit: 255
+    t.integer  "device_id",  limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  add_index "devices", ["user_id"], name: "index_devices_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -51,5 +58,4 @@ ActiveRecord::Schema.define(version: 20150813164104) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "devices", "users"
 end

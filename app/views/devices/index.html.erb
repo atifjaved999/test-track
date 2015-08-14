@@ -5,8 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Imei</th>
-      <th>Type</th>
+      <th>Imei no</th>
+      <th>Device type</th>
       <th>Sim no</th>
       <th>User</th>
       <th colspan="3"></th>
@@ -16,10 +16,10 @@
   <tbody>
     <% @devices.each do |device| %>
       <tr>
-        <td><%= device.imei %></td>
-        <td><%= device.type %></td>
+        <td><%= device.imei_no %></td>
+        <td><%= device.device_type %></td>
         <td><%= device.sim_no %></td>
-        <td><%= device.user %></td>
+        <td><%= device.user_id %></td>
         <td><%= link_to 'Show', device %></td>
         <td><%= link_to 'Edit', edit_device_path(device) %></td>
         <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>

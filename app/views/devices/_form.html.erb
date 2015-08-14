@@ -12,16 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :imei %><br>
-    <%= f.text_field :imei %>
+    <%= f.label :imei_no %><br>
+    <%= f.text_field :imei_no %>
   </div>
   <div class="field">
-    <%= f.label :type %><br>
-    <%= f.text_field :type %>
+    <%= f.label :device_type %><br>
+    <%= f.text_field :device_type %>
   </div>
   <div class="field">
     <%= f.label :sim_no %><br>
     <%= f.text_field :sim_no %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

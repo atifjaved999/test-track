@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+
+  resources :locations
+
   resources :devices
+
+  # resources :devices do
+  #   resources :locations
+  # end
 
   resources :products
 
