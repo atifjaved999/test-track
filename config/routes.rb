@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
 
-
   namespace :admin do
     resources :users
+    resources :devices
   end
   
 resources :admin
 
 resources :setups
 
-  resources :locations
-
-  resources :devices
+resources :locations
 
   # resources :devices do
   #   resources :locations

@@ -1,10 +1,10 @@
-<%= form_for(@device) do |f| %>
-  <% if @device.errors.any? %>
+<%= form_for(@admin_device) do |f| %>
+  <% if @admin_device.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@device.errors.count, "error") %> prohibited this device from being saved:</h2>
+      <h2><%= pluralize(@admin_device.errors.count, "error") %> prohibited this admin_device from being saved:</h2>
 
       <ul>
-      <% @device.errors.full_messages.each do |message| %>
+      <% @admin_device.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
