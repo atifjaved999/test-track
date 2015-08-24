@@ -1,6 +1,6 @@
-class CreateAdminDevices < ActiveRecord::Migration
+class CreateDevices < ActiveRecord::Migration
   def change
-    create_table :admin_devices do |t|
+    create_table :devices do |t|
       t.string :imei_no
       t.string :device_type
       t.string :sim_no

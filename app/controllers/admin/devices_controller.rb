@@ -1,10 +1,10 @@
 class Admin::DevicesController < ApplicationController
-  before_action :set_admin_device, only: [:show, :edit, :update, :destroy]
+  before_action :set_device, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/devices
   # GET /admin/devices.json
   def index
-    @admin_devices = Admin::Device.all
+    @devices = Device.all
   end
 
   # GET /admin/devices/1
@@ -14,7 +14,7 @@ class Admin::DevicesController < ApplicationController
 
   # GET /admin/devices/new
   def new
-    @admin_device = Admin::Device.new
+    @device = Device.new
   end
 
   # GET /admin/devices/1/edit
@@ -24,15 +24,15 @@ class Admin::DevicesController < ApplicationController
   # POST /admin/devices
   # POST /admin/devices.json
   def create
-    @admin_device = Admin::Device.new(admin_device_params)
+    @device = Device.new(device_params)
 
     respond_to do |format|
-      if @admin_device.save
-        format.html { redirect_to @admin_device, notice: 'Device was successfully created.' }
-        format.json { render :show, status: :created, location: @admin_device }
+      if @device.save
+        format.html { redirect_to admin_device_path(@device), notice: 'Device was successfully created.' }
+        format.json { render :show, status: :created, location: @device }
       else
         format.html { render :new }
-        format.json { render json: @admin_device.errors, status: :unprocessable_entity }
+        format.json { render json: @device.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +41,12 @@ class Admin::DevicesController < ApplicationController
   # PATCH/PUT /admin/devices/1.json
   def update
     respond_to do |format|
-      if @admin_device.update(admin_device_params)
-        format.html { redirect_to @admin_device, notice: 'Device was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admin_device }
+      if @device.update(device_params)
+        format.html { redirect_to admin_device_path(@device), notice: 'Device was successfully updated.' }
+        format.json { render :show, status: :ok, location: @device }
       else
         format.html { render :edit }
-        format.json { render json: @admin_device.errors, status: :unprocessable_entity }
+        format.json { render json: @device.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +54,7 @@ class Admin::DevicesController < ApplicationController
   # DELETE /admin/devices/1
   # DELETE /admin/devices/1.json
   def destroy
-    @admin_device.destroy
+    @device.destroy
     respond_to do |format|
       format.html { redirect_to admin_devices_url, notice: 'Device was successfully destroyed.' }
       format.json { head :no_content }
@@ -63,12 +63,12 @@ class Admin::DevicesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_admin_device
-      @admin_device = Admin::Device.find(params[:id])
+    def set_device
+      @device = Device.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def admin_device_params
-      params.require(:admin_device).permit(:imei_no, :device_type, :sim_no, :user_id)
+    def device_params
+      params.require(:device).permit(:imei_no, :device_type, :sim_no, :user_id)
     end
 end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::DeviceTest < ActiveSupport::TestCase
+class DeviceTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

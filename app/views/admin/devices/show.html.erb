@@ -2,23 +2,23 @@
 
 <p>
   <strong>Imei no:</strong>
-  <%= @admin_device.imei_no %>
+  <%= @device.imei_no %>
 </p>
 
 <p>
   <strong>Device type:</strong>
-  <%= @admin_device.device_type %>
+  <%= @device.device_type %>
 </p>
 
 <p>
   <strong>Sim no:</strong>
-  <%= @admin_device.sim_no %>
+  <%= @device.sim_no %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @admin_device.user_id %>
+  <%= @device.user_id %>
 </p>
 
-<%= link_to 'Edit', edit_admin_device_path(@admin_device) %> |
+<%= link_to 'Edit', edit_admin_device_path(@device) %> |
 <%= link_to 'Back', admin_devices_path %>

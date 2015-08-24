@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819074454) do
-
-  create_table "admin_devices", force: :cascade do |t|
-    t.string   "imei_no",     limit: 255
-    t.string   "device_type", limit: 255
-    t.string   "sim_no",      limit: 255
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
+ActiveRecord::Schema.define(version: 20150824064221) do
 
   create_table "devices", force: :cascade do |t|
     t.string   "imei_no",     limit: 255
