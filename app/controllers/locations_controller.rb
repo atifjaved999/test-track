@@ -61,6 +61,12 @@ class LocationsController < ApplicationController
     end
   end
 
+  def get_last_location
+    # binding.pry
+    location = current_user.devices.first.locations.last
+    render :json => location
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location

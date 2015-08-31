@@ -1,10 +1,18 @@
-<script
-src="http://maps.googleapis.com/maps/api/js">
-</script>
 
+
+<p id="counter"></p>
+
+
+<div id="googleMap" style="width:100%;height:500px;"></div>
+
+<script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
-var myCenter=new google.maps.LatLng(51.508742,-0.120850);
-var m1=new google.maps.LatLng("<%=@lat%>", "<%=@lng%>");
+
+var map;
+var marker;
+var infowindow;
+var myCenter=new google.maps.LatLng("<%=@lat%>", "<%=@lng%>");
+var last_point;
 
 function initialize()
 {
@@ -14,16 +22,66 @@ var mapProp = {
   mapTypeId:google.maps.MapTypeId.ROADMAP
   };
 
-var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-var marker=new google.maps.Marker({
-  position:m1,
-  });
+placeMarker(myCenter);
 
-marker.setMap(map);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-</script>
 
-<div id="googleMap" style="width:100%;height:500px;"></div>
+var i =0
+var max_seconds = 15
+// var myVar = setTimeout(function(){ showTimer() }, 7000);
+var myVar = setInterval(function(){ showTimer() }, 1000);
+
+function showTimer() {
+  // get_last_location();
+    $('#counter').html(++i);
+    if (i == max_seconds) {
+      i = 0
+      get_last_location();
+    }
+}
+
+function get_last_location(){
+  $.ajax({
+        url: '/locations/get_last_location',
+        method: 'POST',
+        success: function(data) {
+          dd = data
+           last_point =new google.maps.LatLng(data.lat, data.lng);
+           moveMarker(map, marker)
+
+        }
+      });
+}
+
+function placeMarker(location) {
+  marker = new google.maps.Marker({
+    position: location,
+    map: map,
+  });
+  infowindow = new google.maps.InfoWindow({
+    content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+  });
+  infowindow.open(map,marker);
+  google.maps.event.addDomListener(window, 'load', initialize);
+}
+
+function moveMarker(map, marker){
+marker.setPosition(last_point);
+map.panTo(last_point);
+infowindow.close();
+  infowindow = new google.maps.InfoWindow({
+    content: 'Latitude2: ' + last_point.lat() + '<br>Longitude: ' + last_point.lng()
+  });
+
+  infowindow.open(map,marker);
+  google.maps.event.addDomListener(window, 'load', initialize);
+}
+
+
+
+
+</script>

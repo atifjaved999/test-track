@@ -9,7 +9,11 @@ resources :admin
 
 resources :setups
 
-resources :locations
+resources :locations do
+  collection do
+    post 'get_last_location'
+  end
+end
 
   # resources :devices do
   #   resources :locations
