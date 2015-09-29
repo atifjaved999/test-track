@@ -62,8 +62,8 @@ class LocationsController < ApplicationController
   end
 
   def get_last_location
-    # binding.pry
     location = current_user.devices.first.locations.last
+    # binding.pry
     render :json => location
   end
 
