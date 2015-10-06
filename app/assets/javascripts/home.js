@@ -1,3 +1,32 @@
+// setTimeout(function(){ calcRoute(start, end) }, 5000);
+
+var i =0
+var max_seconds = 7
+// var myVar = setTimeout(function(){ showTimer() }, 7000);
+
+
+function showTimer() {
+  // get_last_location();
+    $('#counter').html(++i);
+    if (i == max_seconds) {
+      i = 0
+      get_last_location();
+    }
+}
+
+function get_last_location(){
+  $.ajax({
+        url: '/locations/get_last_location',
+        method: 'POST',
+        success: function(data) {
+          dd = data
+           last_point =new google.maps.LatLng(data.lat, data.lng);
+           // moveMarker(map, marker, last_point)
+           calcRoute(start, last_point)
+
+        }
+      });
+}
 
 function calcRoute(start, end) {
 
@@ -30,11 +59,11 @@ function calcRoute(start, end) {
 function moveMarker(map, marker, location){
 var current_zoom = map.getZoom();
   google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
-    if (this.getZoom() > 15) {
+    // if (this.getZoom() > 15) {
       console.log("in")
       this.setZoom(current_zoom);
       map.panTo(location);
-    }
+    // }
   });
 marker.setPosition(location);
 // map.panTo(location);

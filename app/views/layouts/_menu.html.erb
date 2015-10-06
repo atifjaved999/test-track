@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Brand</a>
+      <%= link_to "Brand", root_path, 'data-no-turbolink' => true, :class=>"navbar-brand" %>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav pull-right">
@@ -16,6 +16,8 @@
             <li ><%= link_to "Dashboard", admin_index_path  %></li>
             <li><%=link_to "Users", admin_users_path %></li>
           <%else%>
+          <li><%= link_to "Home", root_path, 'data-no-turbolink' => true %></li>
+          <li><%= link_to "Playback", home_playback_path, :class => 'navbar-link', 'data-no-turbolink' => true %></li>
             <li class="active"><a href="/">Setups</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>

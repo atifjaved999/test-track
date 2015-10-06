@@ -23,6 +23,7 @@ end
 
   devise_for :users
   get 'home/index'
+  get 'home/playback'
 
   root to: "home#index"
 

@@ -6,4 +6,8 @@ class HomeController < ApplicationController
     end
     @lat, @lng = 51.508742, -0.120850
   end
+
+  def playback
+    # binding.pry
+  end
 end
