@@ -1,49 +1,39 @@
+<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <!-- BEGIN PAGE BREADCRUMB -->
+    <!--         <ul class="page-breadcrumb breadcrumb">
+          <li>
+            <a href="index.html">Home</a>
+            <i class="fa fa-circle"></i>
+          </li>
+          <li>
+            <a href="#">Page Layouts</a>
+            <i class="fa fa-circle"></i>
+          </li>
+          <li>
+            <a href="#">Blank Page</a>
+          </li>
+        </ul> -->
+    <!-- END PAGE BREADCRUMB -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN PAGE CONTENT-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tabbable">
+          <div class="tab-content no-border">
+            <div class="tab-pane active" id="Dashboard">
+              <!-- <h1>Welcome to Admin Dashboard ..!</h1> -->
+              <%= render "home_page"%>
+            </div>
+            <!-- <div class="tab-pane " id="Stores"></div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+  </div>
+</div>
+<!-- END CONTENT -->
+<!-- END CONTAINER -->
 
-<p id="counter"></p>
-
-<div id="googleMap" style="width:100%;height:500px;"></div>
-
-<script>
-
-var map;
-var directionsDisplay;   // For live directions
-var directionsService = new google.maps.DirectionsService();   // For live directions
-
-var marker;
-var infowindow;
-var myCenter=new google.maps.LatLng("<%=@lat%>", "<%=@lng%>");
-var last_point;
-var start = new google.maps.LatLng(31.528854654816588, 74.28192257881165);
-var end = new google.maps.LatLng(31.525727008258347, 74.27833914756775);
-
-
-function initialize(){
-  // For live directions
-  directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
-  
-var mapProp = {
-  center:myCenter,
-  zoom:15,
-  mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-
-  map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-placeMarker(myCenter);
-
-}
-// setTimeout(function(){ calcRoute(start, end) }, 5000);
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-
-var myVar = setInterval(function(){ showTimer() }, 1000);
-
-
-
-
-
-
-
-
-</script>

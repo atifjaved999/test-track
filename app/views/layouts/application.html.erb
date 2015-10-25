@@ -6,22 +6,41 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <%#= javascript_include_tag 'http://maps.googleapis.com/maps/api/js'%>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=true" ></script>
 </head>
-<body>
-<!--   <p class="notice"><%#= notice %></p>
-  <p class="alert"><%#= alert %></p> -->
-  <%= render "layouts/menu" %>
-  <%= render "layouts/flash_messages" %>
-  <%= yield %>
+
+  <%unless user_signed_in?%>
+    <%= stylesheet_link_tag "login", media: "all"%>
+    <%= javascript_include_tag "login"%>
+    <body class="login">
+      <%= render "layouts/flash_messages" %>
+      <div class="page-container">
+        <%= yield %>
+      </div>
+  <%else%>
+    <%= stylesheet_link_tag "layout4", media: "all"%>
+    <%= javascript_include_tag "layout4"%>
+    <body class="page-header-fixed page-sidebar-closed-hide-logo">
+    <%= render "layouts/header"%>
+    <%#= render "layouts/menu" %>
+    <%= render "layouts/flash_messages" %>
+    <div class="page-container">
+    <!-- <div class="page-container" style="margin-top:0px;"> -->
+      <%= render "layouts/sidebar"%>
+      <%= yield %>
+      <%#= render "admin/mysetups/footer"%>
+    </div>
+  <%end%>
 </body>
 </html>
+
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+  Metronic.init(); // init metronic core components
+  Layout.init(); // init current layout
+  Demo.init(); // init demo features
+  // ComponentsPickers.init();
+  UIBlockUI.init();
+  });
+</script>

@@ -1,7 +1,7 @@
 // setTimeout(function(){ calcRoute(start, end) }, 5000);
 
 var i =0
-var max_seconds = 7
+var max_seconds = 20
 // var myVar = setTimeout(function(){ showTimer() }, 7000);
 
 

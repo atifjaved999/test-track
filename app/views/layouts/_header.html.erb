@@ -1,0 +1,76 @@
+<div class="page-header navbar navbar-fixed-top">
+  <!-- BEGIN HEADER INNER -->
+  <div class="page-header-inner">
+    <!-- BEGIN LOGO -->
+    <div id="tab001" class="page-logo">
+      <a class="tab_status" href="/admin">
+      <img src="/assets/new_theme/admin/layout4/img/logo-light.png" style="margin-top:22px;" alt="logo" class="logo-default"/>
+      </a>
+      <div class="menu-toggler sidebar-toggler">
+        <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+      </div>
+    </div>
+    <!-- END LOGO -->
+    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+    </a>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+    <!-- BEGIN PAGE ACTIONS -->
+    <!-- DOC: Remove "hide" class to enable the page header actions -->
+    <!-- BEGIN PAGE TOP -->
+    <div class="page-top">
+
+      <!-- BEGIN TOP NAVIGATION MENU -->
+      <div class="top-menu">
+        <ul class="nav navbar-nav pull-right">
+          <% if user_signed_in? %>
+            <li class="dropdown dropdown-user dropdown-dark">
+              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+              <span class="username username-hide-on-mobile">
+              <% if current_user.is? :admin  %>
+               Welcome Admin
+              <% else %>
+               Welcome Dear
+              <% end %>
+               </span>
+              <img src="/assets/user-placeholder.png" alt="user-image" class="image-circle"/>
+              
+              </a>
+          <%end%>
+          <% if user_signed_in? %>
+              <ul class="dropdown-menu dropdown-menu-default">
+                <%if current_user.is? "Admin"%>
+                <li>
+                  <a href="#">
+                  <i class="icon-rocket"></i> My Account
+                  </a>
+                </li>
+                <%end%>
+                <li class="divider">
+                </li>
+                <li><%=link_to destroy_user_session_path, :method => :delete do %>
+                  <i class="icon-key"></i> Sign out
+                <%end%>
+                </li>
+              </ul>
+          <%else%>
+              <ul class="sub-menu">
+                <li><%=link_to "Sign in",new_user_session_path%></li>
+              </ul>
+            </li>
+          <%end%>
+          <!-- END USER LOGIN DROPDOWN -->
+        </ul>
+      </div>
+      <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- END PAGE TOP -->
+
+    <!--  Get the code from keenthems  -->
+
+  </div>
+  <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>

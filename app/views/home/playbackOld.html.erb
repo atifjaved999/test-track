@@ -1,0 +1,139 @@
+<button id="start_playback">Start</button>
+<br /><br />
+<div id="map_canvas" style="width:100%;height:500px;"></div>
+
+<script type="text/javascript">
+  var map, marker;
+  var startPos = [42.42679066670903, -83.29210638999939];
+  var speed = 700; // km/h
+
+  var delay = 10;
+
+  var start_playback =true;
+  // If you set the delay below 1000ms and you go to another tab,
+  // the setTimeout function will wait to be the active tab again
+  // before running the code.
+  // See documentation :
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout#Inactive_tabs
+
+  function animateMarker(marker, coords, km_h)
+  {
+      var target = 0;
+      var km_h = km_h || 50;
+      coords.push([startPos[0], startPos[1]]);
+      
+      function goToPoint()
+      {
+          var lat = marker.position.lat();
+          var lng = marker.position.lng();
+          var step = (km_h * 1000 * delay) / 3600000; // in meters
+          
+          var dest = new google.maps.LatLng(
+          coords[target][0], coords[target][1]);
+          
+          var distance =
+          google.maps.geometry.spherical.computeDistanceBetween(
+          dest, marker.position); // in meters
+          
+          var numStep = distance / step;
+          var i = 0;
+          var deltaLat = (coords[target][0] - lat) / numStep;
+          var deltaLng = (coords[target][1] - lng) / numStep;
+          
+          function moveMarker()
+          {
+            var startPoint = new google.maps.LatLng(lat,lng);
+
+              lat += deltaLat;
+              lng += deltaLng;
+              i += step;
+
+            var endPoint = new google.maps.LatLng(lat,lng);
+            // Drawing path line
+            draw_polyline(startPoint, endPoint);
+              
+              if (i < distance)
+              {
+                  marker.setPosition(new google.maps.LatLng(lat, lng));
+                  map.panTo(new google.maps.LatLng(lat, lng));
+                  setTimeout(moveMarker, delay);
+                  console.log("if")
+              }
+              else
+              {   
+                marker.setPosition(dest);
+                map.panTo(dest);
+                  target++;
+                  if (target == coords.length)
+                  { 
+                      target = 0; 
+                      console.log("khattam")
+                      start_playback =true;
+                  }else{
+                    setTimeout(goToPoint, delay);
+                  }
+                  
+
+              }
+          }
+          moveMarker(); // Calling First Time
+      }
+      goToPoint(); // Calling First Time
+  }
+
+  function initialize()
+  {
+      var myOptions = {
+          zoom: 16,
+          center: new google.maps.LatLng(42.425175091823974, -83.2943058013916),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+      coordinates_array = [
+              // The coordinates of each point you want the marker to go to.
+              // You don't need to specify the starting position again.
+              
+              [42.42666395645802, -83.29694509506226],
+              [42.42300508749226, -83.29679489135742],
+              [42.42304468678425, -83.29434871673584],
+              [42.424882066428424, -83.2944130897522],
+              [42.42495334300206, -83.29203128814697]
+          ]
+      
+      marker = new google.maps.Marker({
+          position: new google.maps.LatLng(startPos[0], startPos[1]),
+          map: map
+      });
+      
+      // google.maps.event.addListenerOnce(map, 'idle', function()
+      // {
+      //     animateMarker(marker, coordinates_array, speed);
+      // });
+  }
+
+  initialize();
+
+
+  function draw_polyline(startPoint, endPoint){
+    var arr = [startPoint, endPoint]
+    var poly = new google.maps.Polyline({
+        path: arr,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+        map: map    
+      });
+  }
+
+  $("#start_playback").click(function(){
+    // $(this).attr("disabled", true);
+    
+    if (start_playback) {
+      start_playback =false;
+      animateMarker(marker, coordinates_array, speed);
+    }
+
+  });
+</script>
