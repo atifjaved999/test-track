@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :devices
+  has_many :geo_fences
 
   def is?( requested_role )
     self.role == requested_role.to_s

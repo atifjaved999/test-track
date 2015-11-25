@@ -1,7 +1,7 @@
 // setTimeout(function(){ calcRoute(start, end) }, 5000);
 
 var i =0
-var max_seconds = 20
+var max_seconds = 10
 // var myVar = setTimeout(function(){ showTimer() }, 7000);
 
 
@@ -21,8 +21,9 @@ function get_last_location(){
         success: function(data) {
           dd = data
            last_point =new google.maps.LatLng(data.lat, data.lng);
-           // moveMarker(map, marker, last_point)
-           calcRoute(start, last_point)
+           moveMarker(map, marker, last_point)
+           draw_polyline(start, last_point)
+           // calcRoute(start, last_point)
 
         }
       });
@@ -44,10 +45,10 @@ function calcRoute(start, end) {
             directionsDisplay.setDirections(response);
             directionsDisplay.setMap(map);
             if (marker) {
-              // alert('asdf')
               console.log('move')
               moveMarker(map, marker, end);
             }else{
+              console.log('place')
               placeMarker(end);
             }
         } else {
@@ -60,7 +61,7 @@ function moveMarker(map, marker, location){
 var current_zoom = map.getZoom();
   google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
     // if (this.getZoom() > 15) {
-      console.log("in")
+      console.log("moveMarker")
       this.setZoom(current_zoom);
       map.panTo(location);
     // }
@@ -79,6 +80,7 @@ infowindow.close(); //  Closing the Old window
 }
 
 function placeMarker(location) {
+  console.log("placeMarker")
   marker = new google.maps.Marker({
     position: location,
     map: map,
@@ -88,4 +90,16 @@ function placeMarker(location) {
   });
   infowindow.open(map,marker);
   // google.maps.event.addDomListener(window, 'load', initialize);
+}
+
+function draw_polyline(startPoint, endPoint){
+  var arr = [startPoint, endPoint]
+  var poly = new google.maps.Polyline({
+      path: arr,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+      map: map    
+    });
 }

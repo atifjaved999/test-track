@@ -65,7 +65,7 @@
           var deltaLat = (coords[target][0] - lat) / numStep;
           var deltaLng = (coords[target][1] - lng) / numStep;
           
-          function moveMarker()
+          function moveMarker02()
           {
             var startPoint = new google.maps.LatLng(lat,lng);
 
@@ -81,7 +81,7 @@
               {
                   marker.setPosition(new google.maps.LatLng(lat, lng));
                   map.panTo(new google.maps.LatLng(lat, lng));
-                  setTimeout(moveMarker, delay);
+                  setTimeout(moveMarker02, delay);
                   console.log("if")
               }
               else
@@ -101,7 +101,7 @@
 
               }
           }
-          moveMarker(); // Calling First Time
+          moveMarker02(); // Calling First Time
       }
       goToPoint(); // Calling First Time
   }
@@ -139,18 +139,6 @@
 
   initialize();
 
-
-  function draw_polyline(startPoint, endPoint){
-    var arr = [startPoint, endPoint]
-    var poly = new google.maps.Polyline({
-        path: arr,
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2,
-        map: map    
-      });
-  }
 
   $("#start_playback").click(function(){
     // $(this).attr("disabled", true);

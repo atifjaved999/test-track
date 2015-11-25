@@ -15,6 +15,8 @@ resources :locations do
   end
 end
 
+resources :geo_fences
+
   # resources :devices do
   #   resources :locations
   # end
