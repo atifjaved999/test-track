@@ -1,0 +1,75 @@
+
+<span id="info"></span>
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN BASIC PORTLET-->
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-gift"></i>GeoFence <span id="counter"></span>
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="#portlet-config" data-toggle="modal" class="config">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body form">
+        <div id="googleMap" style="width:100%;height:400px;">
+        </div>
+      </div>
+    </div>
+    <!-- END BASIC PORTLET-->
+  </div>
+</div>
+
+
+<script>
+
+  var map;
+  var marker;
+  var infowindow;
+  var start = new google.maps.LatLng(31.528854654816588, 74.28192257881165);
+  var end = new google.maps.LatLng(31.525727008258347, 74.27833914756775);
+
+  function initialize(){
+
+    
+  var mapProp = {
+    center:new google.maps.LatLng(33.5190755, -111.9253654),
+    zoom:12,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+    // Polygon Coordinates
+    var PloyCoords = [];
+
+    <% @locations.each do |loc|%>
+      PloyCoords.push(new google.maps.LatLng("<%=loc.lat%>", "<%=loc.lng%>"))
+    <%end%>
+
+    // Styling & Controls
+    myPolygon = new google.maps.Polygon({
+      paths: PloyCoords,
+      // draggable: true, // turn off if it gets annoying
+      // editable: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35
+    });
+
+    myPolygon.setMap(map);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>

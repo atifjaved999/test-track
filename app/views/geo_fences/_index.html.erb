@@ -1,1 +1,73 @@
 <h1>Geo Fences Listings</h1>
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-edit"></i>Geo Fences
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="table-toolbar">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="btn-group">
+                <a class="btn green" href="<%=new_geo_fence_path%>" data-no-turbolink=true>
+                  Add New <i class="fa fa-plus"></i>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered" id="sample_editable_15">
+        <thead>
+        <tr>
+          <th> Name </th>
+          <th> Type </th>
+<!--           <th>
+             Edit
+          </th> -->
+          <th>
+             Delete
+          </th>
+        </tr >
+        </thead>
+        <tbody>
+        <%@geo_fences.each_with_index do |geo_fence,i|%>
+        <tr >
+          <td>
+          <a href="<%= geo_fence_path(geo_fence)%>" data-no-turbolink=true>
+            <%= geo_fence.name%>&nbsp;
+          </a>
+          </td>
+          <td><%= geo_fence.geo_fence_type%></td>
+<!--           <td>
+            <a class="" href="javascript:;">
+            Edit </a>
+          </td> -->
+          <td>
+            <%= link_to 'Delete', geo_fence_path(geo_fence), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+        <%end%>
+        </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+  </div>
+</div>
+
+<%= javascript_include_tag "new_theme/admin/pages/scripts/new/table-editable15.js"%>
+<script>
+jQuery(document).ready(function() {
+   TableEditable15.init();
+});
+</script>

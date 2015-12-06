@@ -17,15 +17,7 @@ var TableEditable15 = function () {
             var aData = oTable.fnGetData(nRow);
             var jqTds = $('>td', nRow);
 
-            var terminal_name = aData[0].split("&nbsp;");
-            tick_image = terminal_name[1];
-            terminal_name = terminal_name[0].trim();
-            if(tick_image === undefined)
-            {
-                tick_image = '';
-            }
-
-            jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + terminal_name + '">';
+            jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
             jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
             jqTds[2].innerHTML = '<a class="edit" href="">Save</a>';
             jqTds[3].innerHTML = '<a class="cancel" href="">Cancel</a>';
@@ -55,9 +47,9 @@ var TableEditable15 = function () {
 
 
 
-            "paging":   false,
-            "info":     false,
-            "bFilter": false,
+            // "paging":   false,
+            // "info":     false,
+            // "bFilter": false,
 
             // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
             // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
@@ -156,27 +148,27 @@ var TableEditable15 = function () {
             }
         });
 
-        function saveRowInDB(name, mac_address){
-            $.ajax({
-                  url: '/admin/terminals',
-                  data: {"name": name,  "mac_address" : mac_address},
-                  method: 'POST',
-                  success: function(data) {
-                    alert("Created..!!");
-                  }
-                });
-        }
+        // function saveRowInDB(name, mac_address){
+        //     $.ajax({
+        //           url: '/admin/terminals',
+        //           data: {"name": name,  "mac_address" : mac_address},
+        //           method: 'POST',
+        //           success: function(data) {
+        //             alert("Created..!!");
+        //           }
+        //         });
+        // }
 
-        function updateRowInDB(name, mac_address, id){
-            $.ajax({
-                  url: '/admin/terminals/'+id,
-                  data: {"name": name,  "mac_address" : mac_address},
-                  method: 'PUT',
-                  success: function(data) {
-                    alert("Updated..!!");
-                  }
-                });
-        }
+        // function updateRowInDB(name, mac_address, id){
+        //     $.ajax({
+        //           url: '/admin/terminals/'+id,
+        //           data: {"name": name,  "mac_address" : mac_address},
+        //           method: 'PUT',
+        //           success: function(data) {
+        //             alert("Updated..!!");
+        //           }
+        //         });
+        // }
 
         table.on('click', '.edit', function (e) {
             e.preventDefault();
