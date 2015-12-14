@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 ruby "2.1.4"
 gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
+gem "sms-easy"
+gem 'twilio-ruby', '~> 4.2.1'
 
 group :production do
 	gem 'pg'
@@ -53,5 +55,6 @@ group :development, :test do
     gem 'mysql2', '~> 0.3.18'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
 end
 
