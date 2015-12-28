@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124170202) do
+ActiveRecord::Schema.define(version: 20151225152147) do
 
   create_table "devices", force: true do |t|
     t.string   "imei_no"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20151124170202) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "radius"
   end
 
   create_table "locations", force: true do |t|
@@ -36,8 +37,9 @@ ActiveRecord::Schema.define(version: 20151124170202) do
     t.string   "lng"
     t.string   "speed"
     t.integer  "device_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "geo_fence_id"
   end
 
   create_table "products", force: true do |t|

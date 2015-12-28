@@ -11,11 +11,13 @@ class GeoFencesController < ApplicationController
     @geo_fence = GeoFence.new(geo_fence_params)
     @geo_fence.user_id = current_user.id
     @geo_fence.save
-    save_coordinates(params[:coordinates_array], @geo_fence.id)
+    save_center(params[:center], @geo_fence.id)
+    # save_coordinates(params[:coordinates_array], @geo_fence.id)
   end
 
   def show
-    @locations = @geo_fence.locations
+    @center = @geo_fence.center
+    @radius = @geo_fence.radius
   end
 
   def destroy
@@ -28,14 +30,21 @@ class GeoFencesController < ApplicationController
 
   private
 
-    def save_coordinates(coordinates_array, geo_fence_id)
-      coordinates_array.each do |c|
-        c = c.split(",")
-        lat = c[0]
-        lng = c[1]
+    def save_center(center, geo_fence_id)
+        center = center.split(",")
+        lat = center[0]
+        lng = center[1]
         Location.create(:lat=>lat, :lng=>lng, :geo_fence_id=>geo_fence_id)
-      end
     end
+
+    # def save_coordinates(coordinates_array, geo_fence_id)
+    #   coordinates_array.each do |c|
+    #     c = c.split(",")
+    #     lat = c[0]
+    #     lng = c[1]
+    #     Location.create(:lat=>lat, :lng=>lng, :geo_fence_id=>geo_fence_id)
+    #   end
+    # end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_geo_fence
@@ -45,7 +54,7 @@ class GeoFencesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def geo_fence_params
       # params.require(:geo_fence).permit(:name, :geo_fence_type, :enabled, :user_id, :locations_atttibutes => [:id, :lat, :lng])
-    params.permit(:name, :geo_fence_type, :enabled, :user_id, :coordinates_array)
+      params.permit(:name, :geo_fence_type, :enabled, :user_id, :radius)
     end
 
 end

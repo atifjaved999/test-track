@@ -1,6 +1,6 @@
 class Api::ApiController < ApplicationController
   before_filter :set_headers
-    before_filter :is_authenticated, only: [:create_location]
+  # before_filter :is_authenticated, only: [:create_location]
 
   def set_headers
     headers['Access-Control-Allow-Origin'] = '*'
