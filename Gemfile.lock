@@ -59,6 +59,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    jwt (1.5.2)
     leaflet-rails (0.7.4)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -111,6 +112,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     slop (3.6.0)
+    sms-easy (1.2.4)
+      actionmailer (>= 4.0.0)
     spring (1.4.1)
     sprockets (3.4.0)
       rack (> 1, < 3)
@@ -126,6 +129,10 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.5.3)
       coffee-rails
+    twilio-ruby (4.2.1)
+      builder (>= 2.1.2)
+      jwt (~> 1.0)
+      multi_json (>= 1.3.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -155,8 +162,10 @@ DEPENDENCIES
   rails (= 4.1.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  sms-easy
   spring
   turbolinks
+  twilio-ruby (~> 4.2.1)
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 
