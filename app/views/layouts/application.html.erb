@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
   
   <%#= javascript_include_tag 'http://maps.googleapis.com/maps/api/js'%>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=true" ></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&sensor=false" ></script>
 </head>
 
   <%unless user_signed_in?%>

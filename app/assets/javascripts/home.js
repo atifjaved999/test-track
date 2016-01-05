@@ -29,7 +29,7 @@ function get_last_location(){
       });
 }
 
-function calcRoute(start, end) {
+function calcRoute(start, end) { // to draw google directional path
 
     // var bounds = new google.maps.LatLngBounds();
     // bounds.extend(start);
@@ -92,7 +92,7 @@ function placeMarker(location) {
   // google.maps.event.addDomListener(window, 'load', initialize);
 }
 
-function draw_polyline(startPoint, endPoint){
+function draw_polyline(startPoint, endPoint){ // To draw straight line
   var arr = [startPoint, endPoint]
   var poly = new google.maps.Polyline({
       path: arr,
