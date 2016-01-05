@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   has_many :devices
   has_many :geo_fences
 
+  has_many :notifications
+  has_many :notifications, through: :device_notifications
+  
+
   def is?( requested_role )
     self.role == requested_role.to_s
   end

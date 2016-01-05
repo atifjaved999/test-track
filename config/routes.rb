@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  
+
   namespace :admin do
     resources :users
     resources :devices
+   resources :notifications 
   end
   
 resources :admin

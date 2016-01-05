@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203145506) do
+ActiveRecord::Schema.define(version: 20160105020444) do
+
+  create_table "device_notifications", force: true do |t|
+    t.integer  "device_id"
+    t.integer  "user_id"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "device_notifications", ["device_id"], name: "index_device_notifications_on_device_id", using: :btree
+  add_index "device_notifications", ["user_id"], name: "index_device_notifications_on_user_id", using: :btree
 
   create_table "devices", force: true do |t|
     t.string   "imei_no"
@@ -39,6 +50,12 @@ ActiveRecord::Schema.define(version: 20151203145506) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "geo_fence_id"
+  end
+
+  create_table "notifications", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "products", force: true do |t|
