@@ -16,8 +16,8 @@ end
 # and then you can create a new client without parameters
 @client = Twilio::REST::Client.new
 
-@client.messages.create(
-  from: '+1201-972-6813',
-  to: '+923244009045',
-  body: 'Hey there!'
-)
+# @client.messages.create(
+#   from: '+1201-972-6813',
+#   to: '+923244009045',
+#   body: 'Hey there!'
+# )
