@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :devices
   has_many :geo_fences
 
-  has_many :notifications
+  has_many :device_notifications
   has_many :notifications, through: :device_notifications
   
 

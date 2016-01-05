@@ -5,7 +5,7 @@ class Admin::NotificationsController < ApplicationController
 
   def index
     @notifications = Notification.all
-    respond_with(@notifications)
+    respond_with([:admin,@notifications])
   end
 
   def show
@@ -14,7 +14,7 @@ class Admin::NotificationsController < ApplicationController
 
   def new
     @notification = Notification.new
-    respond_with(@notification)
+    respond_with([:admin,@notification])
   end
 
   def edit
@@ -23,17 +23,17 @@ class Admin::NotificationsController < ApplicationController
   def create
     @notification = Notification.new(notification_params)
     @notification.save
-    respond_with(@notification)
+    respond_with([:admin,@notification])
   end
 
   def update
     @notification.update(notification_params)
-    respond_with(@notification)
+    respond_with([:admin,@notification])
   end
 
   def destroy
     @notification.destroy
-    respond_with(@notification)
+    respond_with([:admin,@notification])
   end
 
   private

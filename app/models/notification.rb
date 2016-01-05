@@ -1,4 +1,4 @@
 class Notification < ActiveRecord::Base
-	belongs_to :devices
-	belongs_to :users
+	has_many :device_notifications
+	has_many :users, through: :device_notifications
 end

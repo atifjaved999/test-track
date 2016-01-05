@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(version: 20160105020444) do
 
   create_table "device_notifications", force: true do |t|
-    t.integer  "device_id"
+    t.integer  "notification_id"
     t.integer  "user_id"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "device_notifications", ["device_id"], name: "index_device_notifications_on_device_id", using: :btree
+  add_index "device_notifications", ["notification_id"], name: "index_device_notifications_on_notification_id", using: :btree
   add_index "device_notifications", ["user_id"], name: "index_device_notifications_on_user_id", using: :btree
 
   create_table "devices", force: true do |t|
