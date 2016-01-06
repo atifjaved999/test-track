@@ -28,7 +28,11 @@
     <div class="page-container">
     <!-- <div class="page-container" style="margin-top:0px;"> -->
       <%= render "layouts/sidebar"%>
-      <%= yield %>
+      <div class="page-content-wrapper">
+        <div class="page-content">
+          <%= yield %>
+        </div>
+      </div>
       <%#= render "admin/mysetups/footer"%>
     </div>
   <%end%>
