@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   has_many :device_notifications
   has_many :notifications, through: :device_notifications
+
+  # accepts_nested_attributes_for :device_notifications, :reject_if => proc { |att| att.blank? }, :allow_destroy => true
   
 
   def is?( requested_role )

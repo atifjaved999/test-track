@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  
+  resources :users do 
+    collection do 
+      get :notification
+    end
+  end
 
   namespace :admin do
     resources :users
@@ -19,6 +23,7 @@ resources :locations do
 end
 
 resources :geo_fences
+resources :notifications
 
   # resources :devices do
   #   resources :locations

@@ -28,20 +28,27 @@
         <span class="title">GeoFence</span>
         </a>
       </li>
-
       <li>
-        <a href="<%=admin_devices_path%>" data-no-turbolink=true>
+        <a href="<%=notification_users_path%>" data-no-turbolink=true>
         <i class="icon-basket"></i>
-        <span class="title">Device Management</span>
+        <span class="title">Filter Notification</span>
         </a>
       </li>
+      <% if current_user.role == "admin" %>
+        <li>
+          <a href="<%=admin_devices_path%>" data-no-turbolink=true>
+          <i class="icon-basket"></i>
+          <span class="title">Device Management</span>
+          </a>
+        </li>
 
-      <li>
-        <a href="<%=admin_notifications_path%>" data-no-turbolink=true>
-        <i class="icon-basket"></i>
-        <span class="title">Notification Management</span>
-        </a>
-      </li>
+        <li>
+          <a href="<%=admin_notifications_path%>" data-no-turbolink=true>
+          <i class="icon-basket"></i>
+          <span class="title">Notification Management</span>
+          </a>
+        </li>
+      <% end %>
 <!--       <li class="last ">
         <a href="javascript:;">
         <i class="icon-pointer"></i>

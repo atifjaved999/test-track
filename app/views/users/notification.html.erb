@@ -1,0 +1,6 @@
+<%= form_for(current_user) do |f| %>
+   <%= f.collection_check_boxes :notification_ids, Notification.all, :id, :name %>
+  <div class="actions">
+	<%= f.submit %>
+  </div>
+<% end %>
