@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :users do 
-    collection do 
-      get :notification
-    end
-  end
+  
+
+ 
+
 
   namespace :admin do
     resources :users
@@ -41,6 +40,11 @@ resources :notifications
     post '/locations' => 'api#create_location'
   end
 
+  resources :users,only: [:update] do 
+    collection do 
+      get :notification
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
