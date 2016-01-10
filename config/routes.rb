@@ -40,7 +40,7 @@ resources :notifications
     post '/locations' => 'api#create_location'
   end
 
-  resources :users,only: [:update] do 
+  resources :users do 
     collection do 
       get :notification
     end
