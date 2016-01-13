@@ -1,33 +1,74 @@
-<%= form_for([:admin, @device]) do |f| %>
-  <% if @device.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@device.errors.count, "error") %> prohibited this device from being saved:</h2>
-
-      <ul>
-      <% @device.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="portlet box blue">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="fa fa-gift"></i> Device
     </div>
-  <% end %>
+    <div class="tools">
+      <a href="javascript:;" class="collapse">
+      </a>
+      <a href="#portlet-config" data-toggle="modal" class="config">
+      </a>
+      <a href="javascript:;" class="reload">
+      </a>
+      <a href="javascript:;" class="remove">
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body form">
+    <!-- BEGIN FORM-->
+    <!-- <form action="#" class="form-horizontal"> -->
+    <%= form_for [:admin,@device], :html=>{ :class=>"form-horizontal"} do |f| %>
+      <div class="form-body">
+      <% if @device.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@device.errors.count, "error") %> prohibited this device from being saved:</h2>
 
-  <div class="field">
-    <%= f.label :imei_no %><br>
-    <%= f.text_field :imei_no %>
+          <ul>
+          <% @device.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">IMEI No</label>
+          <div class="col-md-4">
+            <%= f.text_field :imei_no, :class=>"form-control", :placeholder=>"IMEI No" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">Device Type</label>
+          <div class="col-md-4">
+            <%= f.text_field :device_type, :class=>"form-control", :placeholder=>"Device Type" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">SIM No</label>
+          <div class="col-md-4">
+            <%= f.text_field :sim_no, :class=>"form-control", :placeholder=>"SIM No" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">User Id</label>
+          <div class="col-md-4">
+            <%= f.text_field :user_id, :class=>"form-control", :placeholder=>"User Id" %>
+          </div>
+        </div>
+
+      </div>
+      <div class="form-actions fluid">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button type="submit" class="btn green">Submit</button>
+            <button type="reset" class="btn default">Reset</button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <!-- END FORM-->
   </div>
-  <div class="field">
-    <%= f.label :device_type %><br>
-    <%= f.text_field :device_type %>
-  </div>
-  <div class="field">
-    <%= f.label :sim_no %><br>
-    <%= f.text_field :sim_no %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

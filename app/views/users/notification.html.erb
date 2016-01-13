@@ -1,6 +1,59 @@
-<%= form_for(current_user) do |f| %>
-   <%= f.collection_check_boxes :notification_ids, Notification.all, :id, :name %>
-  <div class="actions">
-	<%= f.submit %>
+
+<div class="portlet box blue">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="fa fa-gift"></i> Set Notifications
+    </div>
+    <div class="tools">
+      <a href="javascript:;" class="collapse">
+      </a>
+      <a href="#portlet-config" data-toggle="modal" class="config">
+      </a>
+      <a href="javascript:;" class="reload">
+      </a>
+      <a href="javascript:;" class="remove">
+      </a>
+    </div>
   </div>
-<% end %>
+  <div class="portlet-body form">
+    <!-- BEGIN FORM-->
+    <!-- <form action="#" class="form-horizontal"> -->
+    <%= form_for current_user, :html=>{ :class=>"form-horizontal"} do |f| %>
+      <div class="form-body">
+        <div class="form-group">
+          <label class="col-md-3 control-label">Name</label>
+          <div class="col-md-9">
+            <%= f.collection_check_boxes :notification_ids, Notification.all, :id, :name, :class=>"form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions fluid">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button type="submit" class="btn green">Submit</button>
+            <button type="reset" class="btn default">Reset</button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <!-- END FORM-->
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('button[type=reset]').click(function(){
+    handle_check_box_reset();
+  });
+
+  function handle_check_box_reset(){
+    setTimeout(function(){
+      $.each($('input[type=checkbox]'), function(index, value) {
+          if ($(this).prop("checked") == true){
+            $(this).parent().addClass('checked');
+        } else {
+            $(this).parent().removeClass('checked');
+        }
+      });
+    }, 100);
+  }
+</script>

@@ -1,24 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="portlet box blue">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="fa fa-gift"></i> Device
+    </div>
+    <div class="tools">
+      <a href="javascript:;" class="collapse">
+      </a>
+      <a href="#portlet-config" data-toggle="modal" class="config">
+      </a>
+      <a href="javascript:;" class="reload">
+      </a>
+      <a href="javascript:;" class="remove">
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body form">
+    <!-- BEGIN FORM-->
+    <form action="#" class="form-horizontal">
+      <div class="form-body">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Imei no:</strong>
-  <%= @device.imei_no %>
-</p>
+      <p>
+        <strong>Imei no:</strong>
+        <%= @device.imei_no %>
+      </p>
 
-<p>
-  <strong>Device type:</strong>
-  <%= @device.device_type %>
-</p>
+      <p>
+        <strong>Device type:</strong>
+        <%= @device.device_type %>
+      </p>
 
-<p>
-  <strong>Sim no:</strong>
-  <%= @device.sim_no %>
-</p>
+      <p>
+        <strong>Sim no:</strong>
+        <%= @device.sim_no %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @device.user_id %>
-</p>
+      <p>
+        <strong>User:</strong>
+        <%= @device.user_id %>
+      </p>
 
-<%= link_to 'Edit', edit_admin_device_path(@device) %> |
-<%= link_to 'Back', admin_devices_path %>
+      <%= link_to 'Edit', edit_admin_device_path(@device) %> |
+      <%= link_to 'Back', admin_devices_path %>
+      </div>
+    </form>
+    <!-- END FORM-->
+  </div>
+</div>

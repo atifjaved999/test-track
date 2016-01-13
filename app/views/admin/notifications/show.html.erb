@@ -1,9 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="portlet box blue">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="fa fa-gift"></i> Notification
+    </div>
+    <div class="tools">
+      <a href="javascript:;" class="collapse">
+      </a>
+      <a href="#portlet-config" data-toggle="modal" class="config">
+      </a>
+      <a href="javascript:;" class="reload">
+      </a>
+      <a href="javascript:;" class="remove">
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body form">
+    <!-- BEGIN FORM-->
+    <form action="#" class="form-horizontal">
+      <div class="form-body">
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @notification.name %>
-</p>
+        <p>
+          <strong>Name:</strong>
+          <%= @notification.name %>
+        </p>
 
-<%= link_to 'Edit', edit_admin_notification_path(@notification) %> |
-<%= link_to 'Back', admin_notifications_path %>
+        <%= link_to 'Edit', edit_admin_notification_path(@notification) %> |
+        <%= link_to 'Back', admin_notifications_path %>
+      </div>
+    </form>
+    <!-- END FORM-->
+  </div>
+</div>
+
+
+
+
