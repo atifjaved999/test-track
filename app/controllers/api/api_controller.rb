@@ -25,6 +25,8 @@ class Api::ApiController < ApplicationController
     def create_location
       # Input params are api_token, device_id
       # binding.pry
+      puts params.inspect
+      render :nothing => true
       # {"nofc":"126014576oFcSep0oFcSepENoFcSepfalseoFcSeptrueoFcSepoFcSepoFcSep0oFcSepoFcSepfalseoFcSep0"}
     end
 end
