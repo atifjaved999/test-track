@@ -37,7 +37,7 @@ resources :notifications
   root to: "home#index"
 
   namespace :api do 
-    post '/locations' => 'api#create_location'
+    get '/locations' => 'api#create_location'
   end
 
   resources :users do 
